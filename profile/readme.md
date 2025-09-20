@@ -189,7 +189,7 @@ type K3sManager struct {
 | **K8s Scheduler** | `0x1e3251aac591d8390e85ccd4abf5bb3326af74396d0221f5eb2d40ea42d17c24` | Pod scheduling | ✅ Active |
 | **Deployment Registry** | (To be deployed) | App deployment tracking | 🚧 In Progress |
 
-#### 🔥 Core Functions
+#### Core Functions
 
 | Function | Purpose | Events Emitted | Status |
 |----------|---------|----------------|--------|
@@ -264,52 +264,6 @@ sequenceDiagram
     N->>N: 11. Log success (✅)
     N->>B: 12. Update contract state
 ```
-
-## Technology Stack
-
-### Frontend
-- **Framework**: Next.js 14
-- **Language**: TypeScript
-- **Styling**: Tailwind CSS
-- **Wallet Integration**: Sui TypeScript SDK
-
-### Backend Infrastructure
-- **Blockchain**: Sui Network
-- **Storage**: Walrus Decentralized Storage
-- **Orchestration**: K3s (Lightweight Kubernetes)
-- **Language**: Go (Backend services)
-- **Smart Contracts**: Move
-
-### Development Tools
-- **Package Manager**: npm/yarn
-- **Build Tool**: Docker
-- **Testing**: Sui CLI, kubectl
-
-## Getting Started
-
-### Requirements
-
-- Node.js 18+
-- npm or yarn
-- Sui wallet (Suiet or Slush Wallet)
-- Testnet SUI tokens
-- Docker (for image building)
-
-### Installation
-
-```bash
-# Navigate to frontend directory
-cd frontend
-
-# Install dependencies
-npm install
-
-# Start development server
-npm run dev
-```
-
-Access the application at http://localhost:3000
-
 ## Usage Guide
 
 ### 1. Connect Wallet
@@ -358,29 +312,6 @@ After upload completion, you'll receive:
 ```
 [DEPLOYMENT DASHBOARD WITH LIVE STATUS GIF PLACEHOLDER]
 ```
-
-## Quick Usage Examples
-
-### Stake Worker (1 SUI)
-```bash
-sui client call --package 0x029f3e... --module worker_registry \
-  --function stake_and_register_worker \
-  --args [REGISTRY] [COIN_1_SUI] "worker-001" "seal_token"
-```
-
-### Deploy Application via Frontend
-1. Connect Sui wallet
-2. Upload Docker tar file
-3. Confirm blockchain transaction
-4. Wait for deployment completion
-5. Access via provided URL
-
-### Monitor Deployment Status
-```bash
-sui client call --package 0x029f3e... --module k8s_scheduler \
-  --function get_active_request_count --args [SCHEDULER]
-```
-
 ## Project Structure
 
 ```
@@ -397,42 +328,3 @@ project-root/
 ├── walrus/              # Walrus storage configuration
 └── seal/                # Encryption module
 ```
-
-## Security Layers
-1. **Blockchain-based trust**: All operations recorded on Sui
-2. **Economic security**: Staking slashing for malicious behavior
-3. **Encryption**: All communication TLS 1.3
-4. **Access control**: Staking amount-based RBAC
-5. **Audit**: All API calls recorded on blockchain
-6. **Immutable storage**: Walrus ensures data permanence
-
-## Future Roadmap
-
-### Phase 1 (Completed) ✅
-- K3s + Sui blockchain integration
-- Contract-first architecture implementation
-- Real-time event processing with enhanced logging
-- Worker registry and K8s scheduler contracts
-- Event-driven kubectl automation
-- Docker containerization and deployment
-- Verified E2E workflow (staking → activation → pod deployment)
-
-### Phase 2 (In Progress) 🚧
-- Frontend web application with wallet integration
-- Walrus storage integration for container images
-- Deployment registry smart contracts
-- Enhanced monitoring dashboard with real-time metrics
-- Auto-scaling based on contract workload data
-
-### Phase 3 (Planned) 📋
-- Multi-cloud worker node support
-- Advanced deployment strategies (blue-green, canary)
-- Integrated CI/CD pipelines
-- Enterprise features and SLA guarantees
-- Cross-chain bridge integrations
-
----
-
-**Status**: 🟢 **Production Ready Backend** | 🚧 **Frontend Integration in Progress**
-**Verification**: 🔥 **Live Testnet Validated**
-**Architecture**: 💯 **Truly Decentralized Sui's Vercel**
