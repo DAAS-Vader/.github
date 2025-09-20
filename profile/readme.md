@@ -2,8 +2,13 @@
 <img width="1235" height="867" alt="image" src="https://github.com/user-attachments/assets/35ed6ec6-c8fc-4aca-9da3-f73b427bd1f2" />
 Decentralized application deployment platform using Sui blockchain, Walrus distributed storage, and Kubernetes orchestration.
 
-## Demo Video
-[![Team DAAS-Vader Demo Video](https://img.youtube.com/vi/YOUR_VIDEO_ID/maxresdefault.jpg)](https://youtu.be/YOUR_VIDEO_ID "Team DAAS-Vader – Demo Video | Sui Hackathon Suimming")
+## Demo
+<div align="center">
+  
+  [![Watch Demo](https://img.shields.io/badge/YouTube-Watch%20Demo-red?style=for-the-badge&logo=youtube)](https://youtu.be/YOUR_VIDEO_ID)
+  
+  **Team DAAS-Vader – Demo Video | Sui Hackathon Suimming**
+</div>
 
 ## Project Overview
 
