@@ -36,29 +36,28 @@ graph TB
         UI4[Deployment Dashboard]
     end
 
-    subgraph "🗄️ Walrus Storage Layer"
-        WS1[📦 Blob Storage]
-        WS2[🔗 Content Addressing]
-        WS3[🌉 Gateway Access]
+    subgraph "Walrus Storage Layer"
+        WS1[Blob Storage]
+        WS2[Content Addressing]
+        WS3[Gateway Access]
     end
 
-    subgraph "🌐 Sui Blockchain"
-        SC1[📋 Deployment Registry]
-        SC2[👤 Owner Mapping]
-        SC3[🏭 Worker Registry]
-        SC4[📅 K8s Scheduler]
+    subgraph "Sui Blockchain"
+        SC1[Deployment Registry]
+        SC2[Owner Mapping]
+        SC3[Worker Registry]
+        SC4[K8s Scheduler]
+    end
+    subgraph "Nautilus Master"
+        NM1[Event Processor]
+        NM2[kubectl Engine]
+        NM3[API Server]
     end
 
-    subgraph "🏗️ Nautilus Master"
-        NM1[🎉 Event Processor]
-        NM2[🎯 kubectl Engine]
-        NM3[📊 API Server]
-    end
-
-    subgraph "☸️ K3s Cluster"
-        K1[🏭 Control Plane]
-        K2[👷 Worker Nodes]
-        K3[📦 Running Pods]
+    subgraph "K3s Cluster"
+        K1[Control Plane]
+        K2[Worker Nodes]
+        K3[Running Pods]
     end
 
     UI1 --> UI2
