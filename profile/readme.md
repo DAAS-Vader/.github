@@ -128,7 +128,12 @@ sequenceDiagram
 - **Deployment Dashboard**: View active deployments and access URLs
 
 #### UI Demo Sections (Reserved for GIFs/Screenshots)
-<img width="3420" height="1890" alt="image" src="https://github.com/user-attachments/assets/539fec8c-bac5-4849-b49d-01f9b5ea5f36" />
+<img width="1245" height="745" alt="image" src="https://github.com/user-attachments/assets/7c987201-d9bd-4320-9a02-537326eb0bfc" />
+<img width="1204" height="830" alt="image" src="https://github.com/user-attachments/assets/2d84d106-8cc5-4b50-8723-8a898c257d90" />
+<img width="1031" height="733" alt="image" src="https://github.com/user-attachments/assets/81b5c43c-aa93-48f7-bf42-3ce2fb335908" />
+<img width="1128" height="852" alt="image" src="https://github.com/user-attachments/assets/af85abab-0018-40ae-a793-5abdc64d8f90" />
+<img width="1128" height="852" alt="image" src="https://github.com/user-attachments/assets/7c54f491-d0f2-4e95-ae12-d9aad7944d4d" />
+
 
 ### 2. Walrus Storage Layer
 **Integration**: Distributed storage for Docker images and application data
