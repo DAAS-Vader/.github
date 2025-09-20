@@ -29,11 +29,11 @@ Users are consumers of Sui's Vercel serverless platform, and compute providers (
 
 ```mermaid
 graph TB
-    subgraph "🌐 Frontend (Next.js)"
-        UI1[📱 Web Interface]
-        UI2[💰 Wallet Integration]
-        UI3[📤 File Upload]
-        UI4[📊 Deployment Dashboard]
+    subgraph "Frontend (Next.js)"
+        UI1[Web Interface]
+        UI2[Wallet Integration]
+        UI3[File Upload]
+        UI4[Deployment Dashboard]
     end
 
     subgraph "🗄️ Walrus Storage Layer"
