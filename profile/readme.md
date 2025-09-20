@@ -28,17 +28,16 @@ Users are consumers of Sui's Vercel serverless platform, and compute providers (
 
 ## Complete E2E Architecture
 
+### 1. User Flow (Application Deployment)
+
 ```mermaid
 sequenceDiagram
-    participant U as User (Frontend)
+    participant U as User
     participant F as Next.js Frontend
     participant W as Walrus Storage
     participant B as Sui Blockchain
-    participant N as Nautilus Master
-    participant K as K3s Control Plane
-    participant P as Running Pods
 
-    Note over U,P: Complete E2E Application Deployment Flow
+    Note over U,B: User uploads app and creates task pool
 
     U->>F: 1. Connect Sui Wallet
     U->>F: 2. Upload Docker Image (.tar)
@@ -46,21 +45,66 @@ sequenceDiagram
     W-->>F: 4. Return Blob ID
     F->>B: 5. Register Deployment (Contract Call)
     B->>B: 6. Emit DeploymentRegisteredEvent
-    F->>B: 7. Submit K8s Request (submit_k8s_request)
-    B->>B: 8. Emit K8sAPIRequestScheduledEvent
-    B->>B: 9. Emit WorkerAssignedEvent
-    N->>B: 10. Listen for events (📡)
-    N->>N: 11. Process deployment request (🎉)
-    N->>W: 12. Fetch Docker image from Blob ID
-    W-->>N: 13. Return image data
-    N->>K: 14. Auto execute kubectl command (🎯)
-    K->>P: 15. Create Pod with Walrus image
-    K-->>N: 16. kubectl output: pod/xxx created (📤)
-    N->>B: 17. Update contract state
-    B-->>F: 18. Deployment success event
-    F-->>U: 19. Display live deployment status & access URL
+    F->>B: 7. Create Task Pool (with Blob ID)
+    B->>B: 8. Emit TaskPoolCreatedEvent
+    B-->>F: 9. Task Pool Created
+    F-->>U: 10. Display Task Pool Status & Wait for Staker
 ```
 
+### 2. Staker Flow (Infrastructure Provision)
+
+```mermaid
+sequenceDiagram
+    participant S as Staker/CLI
+    participant B as Sui Blockchain
+    participant N as Nautilus Master
+    participant K as K3s Control Plane
+    participant W as Worker Container
+
+    Note over S,W: Staker provides compute infrastructure
+
+    S->>B: 1. sui client call stake_and_register_worker
+    B->>B: 2. Emit WorkerRegisteredEvent
+    B->>B: 3. Emit StakeDepositedEvent
+    N->>B: 4. Listen for events (📡)
+    N->>N: 5. Process registration (🎉)
+    S->>B: 6. sui client call activate_worker
+    B->>B: 7. Emit WorkerStatusChangedEvent
+    N->>N: 8. Set join token in contract
+    B->>B: 9. Emit JoinTokenSetEvent
+    S->>W: 10. docker run worker container
+    W->>K: 11. Join cluster with token
+    K-->>N: 12. Worker ready notification
+```
+
+### 3. Task Execution Flow (User Task + Staker Infrastructure)
+
+```mermaid
+sequenceDiagram
+    participant F as Frontend
+    participant B as Sui Blockchain
+    participant N as Nautilus Master
+    participant W as Walrus Storage
+    participant K as K3s Control Plane
+    participant P as Running Pods
+
+    Note over F,P: Staker picks up user's task and executes
+
+    F->>B: 1. Monitor Task Pool Status
+    N->>B: 2. Detect available Task Pool
+    N->>B: 3. Submit K8s Request (submit_k8s_request)
+    B->>B: 4. Emit K8sAPIRequestScheduledEvent
+    B->>B: 5. Emit WorkerAssignedEvent
+    N->>N: 6. Process deployment request (🚀)
+    N->>W: 7. Fetch Docker image from Blob ID
+    W-->>N: 8. Return image data
+    N->>K: 9. Auto execute kubectl command (🎯)
+    K->>P: 10. Create Pod with Walrus image
+    K-->>N: 11. kubectl output: pod/xxx created (📤)
+    N->>B: 12. Update contract state (Task Completed)
+    B-->>F: 13. Task completion event
+    F-->>F: 14. Display live app URL & status
+```
 ## Component Detailed Analysis
 
 ### 1. Frontend (Next.js Web Application)
