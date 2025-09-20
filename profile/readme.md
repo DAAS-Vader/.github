@@ -99,10 +99,7 @@ graph TB
 
 #### UI Demo Sections (Reserved for GIFs/Screenshots)
 ```
-[WALLET CONNECTION DEMO GIF PLACEHOLDER]
-[FILE UPLOAD INTERFACE DEMO GIF PLACEHOLDER]
-[DEPLOYMENT DASHBOARD DEMO GIF PLACEHOLDER]
-[REAL-TIME MONITORING DEMO GIF PLACEHOLDER]
+<img width="3420" height="1890" alt="image" src="https://github.com/user-attachments/assets/539fec8c-bac5-4849-b49d-01f9b5ea5f36" />
 ```
 
 ### 2. Walrus Storage Layer
