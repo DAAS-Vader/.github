@@ -98,9 +98,7 @@ graph TB
 - **Deployment Dashboard**: View active deployments and access URLs
 
 #### UI Demo Sections (Reserved for GIFs/Screenshots)
-```
 <img width="3420" height="1890" alt="image" src="https://github.com/user-attachments/assets/539fec8c-bac5-4849-b49d-01f9b5ea5f36" />
-```
 
 ### 2. Walrus Storage Layer
 **Integration**: Distributed storage for Docker images and application data
