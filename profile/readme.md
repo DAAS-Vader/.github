@@ -66,8 +66,8 @@ sequenceDiagram
     S->>B: 1. sui client call stake_and_register_worker
     B->>B: 2. Emit WorkerRegisteredEvent
     B->>B: 3. Emit StakeDepositedEvent
-    N->>B: 4. Listen for events (📡)
-    N->>N: 5. Process registration (🎉)
+    N->>B: 4. Listen for events 
+    N->>N: 5. Process registration 
     S->>B: 6. sui client call activate_worker
     B->>B: 7. Emit WorkerStatusChangedEvent
     N->>N: 8. Set join token in contract
@@ -95,12 +95,12 @@ sequenceDiagram
     N->>B: 3. Submit K8s Request (submit_k8s_request)
     B->>B: 4. Emit K8sAPIRequestScheduledEvent
     B->>B: 5. Emit WorkerAssignedEvent
-    N->>N: 6. Process deployment request (🚀)
+    N->>N: 6. Process deployment request 
     N->>W: 7. Fetch Docker image from Blob ID
     W-->>N: 8. Return image data
-    N->>K: 9. Auto execute kubectl command (🎯)
+    N->>K: 9. Auto execute kubectl command 
     K->>P: 10. Create Pod with Walrus image
-    K-->>N: 11. kubectl output: pod/xxx created (📤)
+    K-->>N: 11. kubectl output: pod/xxx created 
     N->>B: 12. Update contract state (Task Completed)
     B-->>F: 13. Task completion event
     F-->>F: 14. Display live app URL & status
@@ -169,7 +169,7 @@ worker-release/
 - **K3s control plane**: Execute K3s master node in Docker container
 - **Real-time blockchain event processing**: Listen and process Sui contract events
 - **Auto kubectl execution**: Convert contract events to kubectl commands automatically
-- **Enhanced monitoring**: Provide real-time logging with emoji indicators (📡🎉🚀🎯)
+- **Enhanced monitoring**: Provide real-time logging with emoji indicators 
 
 #### Main Implementation
 ```go
@@ -205,19 +205,19 @@ type K3sManager struct {
 #### 📋 Contract Overview
 | Contract | Address | Function | Status |
 |----------|---------|----------|--------|
-| **Package** | `0x029f3e4a78286e7534e2958c84c795cee3677c27f89dee56a29501b858e8892c` | Main package | ✅ Deployed |
-| **Worker Registry** | `0x733fe1e93455271672bdccec650f466c835edcf77e7c1ab7ee37ec70666cdc24` | Worker management | ✅ Active |
-| **K8s Scheduler** | `0x1e3251aac591d8390e85ccd4abf5bb3326af74396d0221f5eb2d40ea42d17c24` | Pod scheduling | ✅ Active |
+| **Package** | `0x029f3e4a78286e7534e2958c84c795cee3677c27f89dee56a29501b858e8892c` | Main package | Deployed |
+| **Worker Registry** | `0x733fe1e93455271672bdccec650f466c835edcf77e7c1ab7ee37ec70666cdc24` | Worker management | Active |
+| **K8s Scheduler** | `0x1e3251aac591d8390e85ccd4abf5bb3326af74396d0221f5eb2d40ea42d17c24` | Pod scheduling | Active |
 | **Deployment Registry** | (To be deployed) | App deployment tracking | 🚧 In Progress |
 
 #### Core Functions
 
 | Function | Purpose | Events Emitted | Status |
 |----------|---------|----------------|--------|
-| `stake_and_register_worker` | Stake SUI & register worker | `WorkerRegisteredEvent`, `StakeDepositedEvent` | ✅ Tested |
-| `activate_worker` | Activate staked worker | `WorkerStatusChangedEvent`, `JoinTokenSetEvent` | ✅ Tested |
-| `submit_k8s_request` | Deploy Pods via contract | `K8sAPIRequestScheduledEvent`, `WorkerAssignedEvent` | ✅ Tested |
-| `register_deployment` | Register app deployment | `DeploymentRegisteredEvent` | 🚧 Planned |
+| `stake_and_register_worker` | Stake SUI & register worker | `WorkerRegisteredEvent`, `StakeDepositedEvent` | Tested |
+| `activate_worker` | Activate staked worker | `WorkerStatusChangedEvent`, `JoinTokenSetEvent` | Tested |
+| `submit_k8s_request` | Deploy Pods via contract | `K8sAPIRequestScheduledEvent`, `WorkerAssignedEvent` | Tested |
+| `register_deployment` | Register app deployment | `DeploymentRegisteredEvent` | Planned |
 
 ## Complete E2E Deployment Flow
 
@@ -251,8 +251,8 @@ sequenceDiagram
     U->>B: 1. sui client call stake_and_register_worker
     B->>B: 2. Emit WorkerRegisteredEvent
     B->>B: 3. Emit StakeDepositedEvent
-    N->>B: 4. Listen for events (📡)
-    N->>N: 5. Process registration (🎉)
+    N->>B: 4. Listen for events 
+    N->>N: 5. Process registration 
     U->>B: 6. sui client call activate_worker
     B->>B: 7. Emit WorkerStatusChangedEvent
     N->>N: 8. Set join token in contract
@@ -275,14 +275,14 @@ sequenceDiagram
     F->>B: 1. submit_k8s_request (with Walrus Blob ID)
     B->>B: 2. Emit K8sAPIRequestScheduledEvent
     B->>B: 3. Emit WorkerAssignedEvent (Load Balancing)
-    N->>B: 4. Listen for events (📡)
-    N->>N: 5. Process K8s request (🚀)
+    N->>B: 4. Listen for events 
+    N->>N: 5. Process K8s request 
     N->>W: 6. Fetch Docker image from Blob
     W-->>N: 7. Return image data
-    N->>K: 8. Auto execute kubectl command (🎯)
+    N->>K: 8. Auto execute kubectl command 
     K->>P: 9. Create Pod with Walrus image
-    K-->>N: 10. kubectl output: pod/xxx created (📤)
-    N->>N: 11. Log success (✅)
+    K-->>N: 10. kubectl output: pod/xxx created 
+    N->>N: 11. Log success 
     N->>B: 12. Update contract state
 ```
 ## Usage Guide
