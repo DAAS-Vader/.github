@@ -342,19 +342,3 @@ After upload completion, you'll receive:
 ```
 [DEPLOYMENT DASHBOARD WITH LIVE STATUS GIF PLACEHOLDER]
 ```
-## Project Structure
-
-```
-project-root/
-├── frontend/             # Next.js web application
-│   ├── components/       # React components
-│   ├── pages/           # Next.js pages
-│   ├── styles/          # Tailwind CSS styles
-│   └── utils/           # Utility functions
-├── worker-release/       # K3s worker node implementation
-├── nautilus-release/     # K3s master node implementation
-├── contracts-releases/   # Sui smart contracts
-├── docs/                # Project documentation
-├── walrus/              # Walrus storage configuration
-└── seal/                # Encryption module
-```
