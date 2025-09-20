@@ -1,4 +1,5 @@
 # DAAS-Vader: Sui's Decentralized Serverless Cloud Platform
+<img width="1235" height="867" alt="image" src="https://github.com/user-attachments/assets/35ed6ec6-c8fc-4aca-9da3-f73b427bd1f2" />
 
 Decentralized application deployment platform using Sui blockchain, Walrus distributed storage, and Kubernetes orchestration.
 
