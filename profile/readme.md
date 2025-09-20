@@ -25,58 +25,37 @@ Users are consumers of Sui's Vercel serverless platform, and compute providers (
 
 ## Complete E2E Architecture
 
-### Frontend Layer (User Interface)
-
 ```mermaid
-graph TB
-    subgraph "Frontend (Next.js)"
-        UI1[Web Interface]
-        UI2[Wallet Integration]
-        UI3[File Upload]
-        UI4[Deployment Dashboard]
-    end
+sequenceDiagram
+    participant U as User (Frontend)
+    participant F as Next.js Frontend
+    participant W as Walrus Storage
+    participant B as Sui Blockchain
+    participant N as Nautilus Master
+    participant K as K3s Control Plane
+    participant P as Running Pods
 
-    subgraph "Walrus Storage Layer"
-        WS1[Blob Storage]
-        WS2[Content Addressing]
-        WS3[Gateway Access]
-    end
+    Note over U,P: Complete E2E Application Deployment Flow
 
-    subgraph "Sui Blockchain"
-        SC1[Deployment Registry]
-        SC2[Owner Mapping]
-        SC3[Worker Registry]
-        SC4[K8s Scheduler]
-    end
-    subgraph "Nautilus Master"
-        NM1[Event Processor]
-        NM2[kubectl Engine]
-        NM3[API Server]
-    end
-
-    subgraph "K3s Cluster"
-        K1[Control Plane]
-        K2[Worker Nodes]
-        K3[Running Pods]
-    end
-
-    UI1 --> UI2
-    UI2 --> UI3
-    UI3 --> WS1
-    WS1 --> WS2
-    WS2 --> SC1
-    SC1 --> SC2
-    SC2 --> SC4
-    SC4 --> NM1
-    NM1 --> NM2
-    NM2 --> K1
-    K1 --> K2
-    K2 --> K3
-
-    style UI1 fill:#e3f2fd
-    style WS1 fill:#fff3e0
-    style SC4 fill:#e8f5e8
-    style K3 fill:#f3e5f5
+    U->>F: 1. Connect Sui Wallet
+    U->>F: 2. Upload Docker Image (.tar)
+    F->>W: 3. Store as Walrus Blob
+    W-->>F: 4. Return Blob ID
+    F->>B: 5. Register Deployment (Contract Call)
+    B->>B: 6. Emit DeploymentRegisteredEvent
+    F->>B: 7. Submit K8s Request (submit_k8s_request)
+    B->>B: 8. Emit K8sAPIRequestScheduledEvent
+    B->>B: 9. Emit WorkerAssignedEvent
+    N->>B: 10. Listen for events (📡)
+    N->>N: 11. Process deployment request (🎉)
+    N->>W: 12. Fetch Docker image from Blob ID
+    W-->>N: 13. Return image data
+    N->>K: 14. Auto execute kubectl command (🎯)
+    K->>P: 15. Create Pod with Walrus image
+    K-->>N: 16. kubectl output: pod/xxx created (📤)
+    N->>B: 17. Update contract state
+    B-->>F: 18. Deployment success event
+    F-->>U: 19. Display live deployment status & access URL
 ```
 
 ## Component Detailed Analysis
