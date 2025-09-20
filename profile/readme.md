@@ -26,6 +26,10 @@ Users are consumers of Sui's Vercel serverless platform, and compute providers (
 - **Economic security model** (staking-based permission management)
 - **Event-driven automation** (blockchain events trigger K8s operations)
 
+## System Architecture
+
+<img width="1269" height="929" alt="image" src="https://github.com/user-attachments/assets/4fbb16c2-9bad-4116-ba72-ae5b350505c8" />
+
 ## Complete E2E Architecture
 
 ### 1. User Flow (Application Deployment)
